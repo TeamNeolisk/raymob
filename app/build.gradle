@@ -69,6 +69,12 @@ android {
         // Give to CMake the name of the library
         externalNativeBuild {
             cmake {
+                // < AKM_EDIT: CMake arguments for Ava Android build 
+                arguments "-DPLATFORM=Android",
+                        "-DGLFW_BUILD_X11=OFF",
+                        "-DGLFW_BUILD_WAYLAND=OFF"
+                cppFlags "" // Add any necessary flags
+                // AKM_EDIT >
                 def nativeLibName = project.findProperty('app.native_library_name') ?: 'raymob'
                 def glVersion = project.findProperty('gl.version') ?: 'ES20'
 
@@ -148,7 +154,9 @@ android {
     }
     externalNativeBuild {
         cmake {
-            path file('src/main/cpp/CMakeLists.txt')
+            // < AKM_EDIT: Point to Ava's CMakeLists.txt 
+            path file('../../CMakeLists.txt')
+            // AKM_EDIT >            
             version '3.22.1'
         }
     }

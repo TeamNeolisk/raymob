@@ -11,7 +11,9 @@ list(APPEND SOURCES ${ANDROID_NDK}/sources/android/native_app_glue/android_nativ
 target_compile_definitions(raymoblib PRIVATE PLATFORM_ANDROID)
 
 # Include raylib header files
-target_include_directories(raymoblib PRIVATE "${CMAKE_SOURCE_DIR}/deps/raylib")
+# < AKM_EDIT: Don't need to include Raylib (linked below, included by AVA) but do need to include own directory
+target_include_directories(raymoblib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 
 # Link required libraries to raylib
 target_link_libraries(raymoblib raylib)
